@@ -1,31 +1,71 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>AngularJS Tutorial</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
-    <script src="js/app.js"></script>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Hello AngularJS - How To POST JSON Data From $http Service</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<script src="js/angular.min.js"></script>
+	<script src="js/ui-bootstrap-tpls-0.9.0.min.js"></script>
+	<script src="js/app.js"></script>
 </head>
-<body ng-app="app" ng-controller="MainController as main">
-	<div class="container">
-        <h1>{{main.title}}</h1>
-        <div class="input-group" > 
-	    	<span class="input-group-addon">
-	    		<span class="glyphicon glyphicon-search"></span>
-	    	</span>
-	    	<input type="text" class="form-control" ng-model="main.searchInput">
-	    </div>
-	    
-	    <h3>List of tv shows</h3>
-	    <ul class="list-group">
-	    	<li class="list-group-item" ng-repeat="item in items | filter:main.searchInput">
-	    		<span class="glyphicon glyphicon-star" ng-if="item.favorite"/></span>
-	    		{{item.title}} <span class="badge">{{item.year}}</span>
-	    	</li>
-	    </ul>
 
-    </div>
-    
+<body  ng-app="app" ng-controller="MainController as main">
+
+<div>
+	<div style="padding-bottom:50px">
+		<table style="width:100%">
+			<tr>
+				<td style="width:45%;padding-left:40px;vertical-align: top">
+					<div style="padding-bottom:20px">
+						<h3>Add a Tv Shows</h3>
+					</div>
+					<form class="form-horizontal" role="form" ng-submit="addRowAsyncAsJSON()">
+						<div class="form-group">
+							<label class="col-md-2 control-label">Title</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" name="title" ng-model="title" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Year</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" name="year"
+									   ng-model="year" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Favorite</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" name="favorite"
+									   ng-model="favorite" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div style="padding-left:110px">
+								<input type="submit" value="Submit" class="btn btn-primary"/>
+							</div>
+						</div>
+					</form>
+				</td>
+				<td style="vertical-align: top;">
+					<table class="table">
+						<tr>
+							<th>Title</th>
+							<th>Year</th>
+							<th>Favorite ?</th>
+						</tr>
+						<tr ng-repeat="item in items">
+							<td>{{item.title}}</td>
+							<td>{{item.year}}</td>
+							<td><span class="glyphicon glyphicon-star" ng-if="item.favorite"/></span></td>
+						</tr>
+					</table>
+				</td>
+
+			</tr>
+		</table>
+	</div>
+</div>
+
 </body>
 </html>
